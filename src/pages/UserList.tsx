@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Container, Typography, Box, Card, CardContent, Snackbar, Alert } from "@mui/material";
+import { Container, Typography, Box, Snackbar, Alert } from "@mui/material";
 import UserCard from "../components/UserCard.tsx";
 import { GET_REQUEST } from "../services/httpService.ts";
 import { styled } from "@mui/system";
@@ -81,7 +81,7 @@ const UsersList = () => {
         </Typography>
       ) : (
         <Container>
-          <Typography variant="h4" gutterBottom>Users List</Typography>
+          <Typography variant="h6" gutterBottom>Users List</Typography>
           <Box sx={userListStyles.listContent}>
             <UsersGrid>
               {users.map((user, index) => (
