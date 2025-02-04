@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {jwtDecode} from "jwt-decode";
-import { Alert, AppBar, Box, Container, Snackbar, Typography } from "@mui/material";
+import { Alert, Box, Snackbar, Typography } from "@mui/material";
 import Header from "../components/Header.tsx";
 import UsersList from "./UserList.tsx";
-import { set } from "react-hook-form";
 import UserCard from "../components/UserCard.tsx";
 import { MESSAGE } from "../constants/message.ts";
 
@@ -69,9 +68,12 @@ const Dashboard = () => {
         
         <>
             <Header />
-            <Typography variant="h4" mt={15}>
-                Welcome to the Application
-            </Typography>
+            <Box display="flex" justifyContent="center">
+                <Typography variant="h4" mt={10}>
+                    Welcome to the Application
+                </Typography>
+            </Box>
+            
         
             <Box sx={dashboardStyles.container}>
                 {isAdmin ? (
@@ -80,7 +82,7 @@ const Dashboard = () => {
                     </Box>
                 ) : (
                     <Box sx={dashboardStyles.userContent}>
-                        <Typography variant="h4">
+                        <Typography variant="h6">
                             Logged In User
                         </Typography>
                         {currentUser &&

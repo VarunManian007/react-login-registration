@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TextField, Button, Card, CardContent, Typography, Box, List, ListItem, Chip, Container, Snackbar, Alert, InputAdornment, IconButton } from "@mui/material";
+import { TextField, Button, Card, CardContent, Typography, Box, Chip, Container, Snackbar, Alert, InputAdornment, IconButton } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { z } from "zod";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { POST_REQUEST } from "../services/httpService.ts";
 import { ApiResponse } from "../model/apiResponse.ts";
@@ -15,7 +14,7 @@ import { MESSAGE } from "../constants/message.ts";
 
 const inputLoginFieldSchema = z.object({
   email: z.string().email(MESSAGE.VALIDATION.EMAIL),
-  password: z.string()
+  password: z.string().nonempty(MESSAGE.VALIDATION.PASSWORD)
 });
 
 const inputRegisterSchema = inputLoginFieldSchema.extend({
@@ -44,10 +43,10 @@ const Form = ({category}: {category: "login" | "register" }) => {
     const password = watch("password", "");
 
     const passwordChecks = [
-      { regex: /.{8,}/, message: "At least 8 characters" },
-      { regex: /[a-zA-Z]/, message: "At least one letter" },
-      { regex: /[0-9]/, message: "At least one number" },
-      { regex: /[!@#$%^&*(),.?":{}|<>]/, message: "At least one special character" },
+      { regex: /.{8,}/, message: "Minimum length of 8 characters." },
+      { regex: /[a-zA-Z]/, message: "At least one letter." },
+      { regex: /[0-9]/, message: "At least one number." },
+      { regex: /[!@#$%^&*(),.?":{}|<>]/, message: "At least one special character." },
     ];
 
     const onSubmit = async (data: any) => {
@@ -111,7 +110,7 @@ const Form = ({category}: {category: "login" | "register" }) => {
         <Card sx={formStyles.cardContainer}>
           <CardContent>
             <Typography variant="h5" gutterBottom>
-              {category === "register" ? "Sign Up" : "Sign In"}
+              {category === "register" ? "Register" : "Login"}
             </Typography>
             <form onSubmit={handleSubmit(onSubmit)}>
               <Box mb={2}>
@@ -174,7 +173,7 @@ const Form = ({category}: {category: "login" | "register" }) => {
                   
     
               <Button type="submit" fullWidth variant="contained" color="primary" onClick={handleSubmit(onSubmit)}>
-                {category === "register" ? "Sign Up" : "Sign In"}
+                {category === "register" ? "Register" : "Login"}
               </Button>
             </form>
           </CardContent>
