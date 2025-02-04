@@ -75,3 +75,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+
+## Application Page
+
+Once logged, and decoded token finds:
+1. isAdmin: true - All users available in the DB will be fetched and shown in UI.
+2. isAdmin: false - Details of only the logged in User will be displayed.
+
